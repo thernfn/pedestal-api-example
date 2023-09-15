@@ -1,4 +1,4 @@
-{:paths ["src" "resources" "dev"]
+{:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.11.1"}
         integrant/integrant {:mvn/version "0.8.1"}
         metosin/ring-http-response {:mvn/version "0.9.3"}
@@ -15,9 +15,6 @@
         org.slf4j/jcl-over-slf4j {:mvn/version "1.7.35"}
         org.slf4j/log4j-over-slf4j {:mvn/version "1.7.35"}
 
-        ;; Http client for test 
-        clj-http/clj-http {:mvn/version "3.12.3"}
-
         ;; Database
         org.postgresql/postgresql {:mvn/version "42.6.0"}
         com.github.seancorfield/next.jdbc {:mvn/version "1.3.883"}
@@ -26,15 +23,23 @@
 
         ;; Database migration 
         org.flywaydb/flyway-core {:mvn/version "9.22.0"}
-
+        
+        ;; Spec 
+        metosin/malli {:mvn/version "0.12.0"}
+        
         ;; Format negotiation 
         metosin/muuntaja {:mvn/version "0.6.8"}}
 
  :aliases
- {:test {:extra-paths ["test" "resources/test"]
+ {:dev {:extra-paths ["dev"]
+        :extra-deps {integrant/repl {:mvn/version "0.3.3"}}
+        :jvm-opts ["-XX:-OmitStackTraceInFastThrow"]}
+  :test {:extra-paths ["test" "resources/test"]
          :extra-deps {lambdaisland/kaocha {:mvn/version "1.85.1342"}
                       lambdaisland/kaocha-cloverage {:mvn/version "1.1.89"}
                       ;; Database test 
                       org.testcontainers/testcontainers {:mvn/version "1.19.0"}
-                      org.testcontainers/postgresql {:mvn/version "1.19.0"}}
+                      org.testcontainers/postgresql {:mvn/version "1.19.0"}
+                      ;; Http client for test 
+                      clj-http/clj-http {:mvn/version "3.12.3"}}
          :main-opts ["-m" "kaocha.runner"]}}}
