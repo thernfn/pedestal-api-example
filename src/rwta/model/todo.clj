@@ -86,8 +86,10 @@
                         :dbname "rwca"
                         :username "rwca"
                         :password "rwca"})]
-    (get-todo ds (parse-uuid "20c8ea69-808e-42fb-a643-2a12c57d0589"))) 
+    (get-todo ds (random-uuid))) 
   ; nil
   (when true 1)
+  (random-uuid)
+  
   )
 
